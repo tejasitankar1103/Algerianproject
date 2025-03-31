@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FWI Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Algerian Fire Weather Index (FWI) Prediction</h1>
+        <form action="{{ url_for('predict_datapoint')}}" method="post">
+            <label for="temperature">Temperature (°C):</label>
+            <input type="number" step="0.01" id="temperature" name="temperature" required>
+
+            <label for="rh">Relative Humidity (%):</label>
+            <input type="number" step="0.01" id="rh" name="rh" required>
+
+            <label for="ws">Wind Speed (km/h):</label>
+            <input type="number" step="0.01" id="ws" name="ws" required>
+
+            <label for="rain">Rain (mm):</label>
+            <input type="number" step="0.01" id="rain" name="rain" required>
+
+            <label for="ffmc">Fine Fuel Moisture Code (FFMC):</label>
+            <input type="number" step="0.01" id="ffmc" name="ffmc" required>
+
+            <label for="dmc">Duff Moisture Code (DMC):</label>
+            <input type="number" step="0.01" id="dmc" name="dmc" required>
+
+            <label for="isi">Initial Spread Index (ISI):</label>
+            <input type="number" step="0.01" id="isi" name="isi" required>
+
+            <label for="classes">Classes (Fire Occurrence: 0 or 1):</label>
+            <select id="classes" name="classes" required>
+                <option value="0">No Fire</option>
+                <option value="1">Fire</option>
+            </select>
+
+            <label for="region">Region:</label>
+            <select id="region" name="region" required>
+                <option value="1">Region 1</option>
+                <option value="2">Region 2</option>
+            </select>
+
+            <button type="submit">Predict FWI</button>
+        </form>
+        <h2>
+            The FWI prediction is {{results}}
+        </h2>
+    </div>
+    
+</body>
+</html>
